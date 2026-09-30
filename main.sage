@@ -14,15 +14,13 @@ load("utils.sage")
 load("crypto.sage")
 load("stickelberger.sage")
 
-# --- Lancement de l'attaque ---
-
-""" Génération des clés"""
+""" Key generation """
 
 pk, sk = key_gen_chiffrement()
 gamma = sk[1]
 Gpub = pk
 
-""" Troncature et réduction à un problème MinRank"""
+""" Truncation and reduction to a MinRank instance """
 
 A = Matrix(Fq, kmasq, m*(k + la + 1))
 V_mat = MatrixSpace(Fq, m, k + la + 1).random_element()
@@ -39,7 +37,7 @@ Mx = Matrix(Fq, m, k + la + 1)
 for i in range(rho):
     Mx += x[i] * pliage(base[i], m, k + la + 1)
     
-"""Construction des équations issues des mineurs"""
+""" Construction of equations derived from minors """
 
 equations = []
 for i in range(m):
@@ -61,6 +59,8 @@ for i in range(len(solutions)):
     for j in range(rho):
         E_mat += solutions[i][j] * pliage(base[j], m, k + la + 1)
     bases.append(E_mat.transpose()[0])
+    
+#print(bases)
 
-"""On vérifie que la base gamma fait bien partie de celles calculées"""
-print(f"Attaque réussie : {gamma/gamma[0] in bases}")
+""" We verify that the basis gamma is indeed among those calculated. """
+print(f"Successful attack: {gamma/gamma[0] in bases}")

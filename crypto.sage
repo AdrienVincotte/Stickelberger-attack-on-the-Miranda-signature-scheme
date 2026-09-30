@@ -1,5 +1,7 @@
+""" Application of masking to the unfolded matrix """
+
 def masquage(Gdep):
-    """Applique le masquage sur la matrice dépliée."""
+
     Gdep_ls = Gdep[0:m*k - ls]
     for i in range(la):
         ligne = Mdeplie.random_element()
@@ -12,9 +14,10 @@ def masquage(Gdep):
         P = Brouillage.random_element()
     return P * Gdep_ls
 
+""" Key generation """
 
 def key_gen_chiffrement():
-    """Génération de la paire (clé publique, clé privée)."""
+
     g = C.random_element()
     while psiv_g(g, base_canon).rank() != n:
         g = C.random_element()
