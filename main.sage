@@ -51,7 +51,7 @@ equations_Fq.append(x[0] - 1)
 
 I = R.ideal(equations_Fq)
 
-solutions = extraire_solutions_stickelberger_directe(I, Fq, Fqm, rho, max_essais=50)
+solutions = stickelberger(I, Fq, Fqm, rho, max_essais=50)
 
 bases = []
 for i in range(len(solutions)):
